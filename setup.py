@@ -12,7 +12,7 @@ import pkg_resources
 
 
 NAME = 'pillowfight'
-VERSION = '0.1'
+VERSION = '0.2'
 SUMMARY = 'Eases the transition from PIL to Pillow for projects.'
 
 fp = open('README.rst', 'r')
