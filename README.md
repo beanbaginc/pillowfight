@@ -3,26 +3,52 @@ Pillow Fight
 
 Pillow is a new replacement for PIL that works as a drop-in replacement. It's
 great, but unfortunately, users must first uninstall PIL before installing
-Pillow, or Bad Things Happen. This makes it very hard for public projects to
-easily depend on one or the other without inevitably breaking something.
+Pillow, as they share a namespace.
+
+This makes it very hard for public projects to easily depend on either PIL or
+Pillow without inevitably breaking something (perhaps in subtle ways).
+
+Basically, without having full control of every system the package is running
+on, it's easy to break something, and hard to transition.
 
 This package aims to "solve" that by providing a single dependency that can
-intelligently depend on the appropriate package. Packages that need to maintain
-compatibility with both can simply depend on the ``pillowfight`` package.
+intelligently depend on either PIL or Pillow, based on what's already on the
+system. Packages that still need to work if PIL is installed, but aim to
+transition to Pillow, can simply depend on the ``pillowfight`` package.
 
 
 How it works
 ------------
 
-This package is provided as a source distribution, meaning that it will be
-pulled down and executed by any project depending on it.
+This package is provided as a source distribution with a simple setup script.
+When ``pillowfight`` is installed for the first time, its setup script will
+run and start inspecting the system.
 
-The setup script will then look to see if PIL is already installed. If so,
-it will spit out a warning about PIL being deprecated, and then depend on PIL.
-The job is then done, and the project can be sure they have something that
-works, even if it's not ideal.
+The setup script will look to see if PIL is already installed. If so, it will
+print a warning saying that PIL is deprecated and to install Pillow. It will
+then turn around and depend on PIL.
 
 If PIL is not installed, it will instead depend on Pillow.
+
+
+Why we wrote this
+-----------------
+
+We use Django and Pillow for a product that sysadmins can install in their
+network. There are a lot of configurations out there, and a lot of older
+systems already using PIL,
+
+We've been trying to figure out the right strategy for getting new and existing
+users onto Pillow without breaking existing installs. We don't have much
+control over the system, so we knew we had to be clever.
+
+A lot of projects out there seem to have modify their setup.py scripts to check
+what's on the system, but in practice, that doesn't work too well. When
+building packages, the ``requires.txt`` files would be populated with either
+``PIL`` or ``Pillow``, and that just wasn't going to work.
+
+So we wrote this as a way to have a stable dependency that could do the right
+thing. We hope others will find it useful.
 
 
 Who's using it
