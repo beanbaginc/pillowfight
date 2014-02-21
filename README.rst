@@ -31,7 +31,7 @@ then turn around and depend on PIL.
 If PIL is not installed, it will instead depend on Pillow.
 
 
-Using Pillowfight
+Using pillowfight
 -----------------
 
 Simply replace your PIL dependency with pillowfight in ``setup``'s
