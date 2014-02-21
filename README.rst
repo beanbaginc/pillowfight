@@ -55,6 +55,6 @@ Who's using it
 --------------
 
 We're using it for our code review product,
-[Review Board](http://www.reviewboard.org/).
+`Review Board <http://www.reviewboard.org/>`_.
 
-If you're using it, [let us know](mailto:christian@beanbaginc.com).
+If you're using it, `let us know <mailto:christian@beanbaginc.com>`_.
