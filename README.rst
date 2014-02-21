@@ -34,7 +34,7 @@ If PIL is not installed, it will instead depend on Pillow.
 Using pillowfight
 -----------------
 
-Simply replace your PIL dependency with pillowfight in ``setup``'s
+Simply replace your PIL dependency with ``pillowfight`` in ``setup``'s
 ``install_requires`` list:
 
 .. code-block:: python
@@ -51,17 +51,17 @@ Why we wrote this
 -----------------
 
 We use Django and Pillow for a product that sysadmins can install in their
-network. There are a lot of configurations out there, and a lot of older
-systems already using PIL,
+networks. There are a lot of configurations out there, and a lot of older
+systems already using PIL.
 
-We've been trying to figure out the right strategy for getting new and existing
-users onto Pillow without breaking existing installs. We don't have much
-control over the system, so we knew we had to be clever.
+We've been trying to figure out the right strategy for getting new and
+existing users onto Pillow without breaking any installs. We don't have much
+control over their systems, so we knew we had to be clever.
 
-A lot of projects out there seem to have modify their setup.py scripts to check
-what's on the system, but in practice, that doesn't work too well. When
-building Python eggs, the ``requires.txt`` files would be populated with either
-``PIL`` or ``Pillow``, and that just wasn't going to work.
+A lot of projects out there seem to have modified their ``setup.py`` files to
+check what's on the system, but in practice, that doesn't work too well. When
+building Python eggs, the ``requires.txt`` files would be populated with
+either ``PIL`` or ``Pillow``, and that just wasn't going to work.
 
 So we wrote this as a way to have a stable dependency that could do the right
 thing. We hope others will find it useful.
