@@ -19,6 +19,15 @@ fp = open('README.rst', 'r')
 DESCRIPTION = fp.read().strip()
 fp.close()
 
+PIL_WARNING = '''
+***************************************************************************
+The "PIL" library is deprecated in favor of "Pillow", and may not be
+supported in a future release.
+
+To switch to "Pillow", you must first uninstall "PIL".
+***************************************************************************
+'''
+
 
 # If PIL is installed, use that. Otherwise prefer the newer Pillow library.
 pil_req = pkg_resources.Requirement.parse('PIL')
@@ -27,12 +36,8 @@ try:
     pkg_resources.get_provider(pil_req)
 
     # We found PIL. So, guess we have to use that.
+    sys.stderr.write('\n%s\n' % PIL_WARNING.strip())
     image_lib = 'PIL'
-
-    sys.stderr.write('The "PIL" library is deprecated and support will be '
-                     'removed in a future release.\n'
-                     'To switch to "Pillow", you must first uninstall '
-                     '"PIL".\n\n')
 except pkg_resources.DistributionNotFound:
     image_lib = 'Pillow'
 
