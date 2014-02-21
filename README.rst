@@ -1,15 +1,15 @@
 Pillow Fight
 ============
 
-Pillow is a new replacement for PIL that works as a drop-in replacement. It's
-great, but unfortunately, users must first uninstall PIL before installing
-Pillow, as they share a namespace.
+Pillow is a replacement for PIL that works as a drop-in replacement. Unlike
+PIL, it's actively maintained and easy to install. It's pretty great. There's
+only one problem, which is that users must first uninstall PIL before
+installing Pillow, as they share a namespace.
 
-This makes it very hard for public projects to easily depend on either PIL or
-Pillow without inevitably breaking something (perhaps in subtle ways).
-
-Basically, without having full control of every system the package is running
-on, it's easy to break something, and hard to transition.
+This makes it very hard for Python modules or products that need to run on a
+variety of configurations to easily depend on either PIL or Pillow without
+inevitably breaking something (perhaps in subtle ways). That makes it hard to
+safely  transition.
 
 This package aims to "solve" that by providing a single dependency that can
 intelligently depend on either PIL or Pillow, based on what's already on the
