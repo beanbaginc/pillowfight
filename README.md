@@ -29,6 +29,6 @@ Who's using it
 --------------
 
 We're using it for our code review product,
-(Review Board)[http://www.reviewboard.org/].
+[Review Board](http://www.reviewboard.org/).
 
-If you're using it, (let us know)[mailto:christian@beanabginc.com].
+If you're using it, [let us know](mailto:christian@beanbaginc.com).
