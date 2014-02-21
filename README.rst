@@ -31,6 +31,22 @@ then turn around and depend on PIL.
 If PIL is not installed, it will instead depend on Pillow.
 
 
+Using Pillowfight
+-----------------
+
+Simply replace your PIL dependency with pillowfight in ``setup``'s
+``install_requires`` list:
+
+.. code-block:: python
+
+    setup(name='MyPackage',
+          version='1.0',
+          install_requires=[
+              'pillowfight'
+          ]
+    )
+
+
 Why we wrote this
 -----------------
 
@@ -44,7 +60,7 @@ control over the system, so we knew we had to be clever.
 
 A lot of projects out there seem to have modify their setup.py scripts to check
 what's on the system, but in practice, that doesn't work too well. When
-building packages, the ``requires.txt`` files would be populated with either
+building Python eggs, the ``requires.txt`` files would be populated with either
 ``PIL`` or ``Pillow``, and that just wasn't going to work.
 
 So we wrote this as a way to have a stable dependency that could do the right
