@@ -2,17 +2,17 @@
 import sys
 
 try:
-    from setuptools import setup, find_packages
+    from setuptools import setup
 except ImportError:
     from ez_setup import use_setuptools
     use_setuptools()
-    from setuptools import setup, find_packages
+    from setuptools import setup
 
 import pkg_resources
 
 
 NAME = 'pillowfight'
-VERSION = '0.2'
+VERSION = '0.3'
 SUMMARY = 'Eases the transition from PIL to Pillow for projects.'
 
 fp = open('README.rst', 'r')
@@ -39,8 +39,12 @@ try:
     sys.stderr.write('\n%s\n' % PIL_WARNING.strip())
     image_lib = 'PIL'
 except pkg_resources.DistributionNotFound:
-    image_lib = 'Pillow'
+    image_lib = 'Pillow>=3.4.2'
 
+    if sys.hexversion < 0x02070000:
+        # Pillow 4.0 requires Python 2.7+. For older versions of Python, we
+        # can't go higher than 3.x.
+        image_lib += ',<=3.9999'
 
 setup(name=NAME,
       version=VERSION,
