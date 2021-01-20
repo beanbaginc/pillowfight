@@ -12,7 +12,7 @@ import pkg_resources
 
 
 NAME = 'pillowfight'
-VERSION = '0.3'
+VERSION = '0.4'
 SUMMARY = 'Eases the transition from PIL to Pillow for projects.'
 
 fp = open('README.rst', 'r')
@@ -45,6 +45,9 @@ except pkg_resources.DistributionNotFound:
         # Pillow 4.0 requires Python 2.7+. For older versions of Python, we
         # can't go higher than 3.x.
         image_lib += ',<=3.9999'
+    elif sys.hexversion < 0x03050000:
+        # Pillow 7.0 requires Python 3.5+.
+        image_lib += ',<=6.9999'
 
 setup(name=NAME,
       version=VERSION,
